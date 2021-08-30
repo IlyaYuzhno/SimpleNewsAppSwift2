@@ -32,11 +32,11 @@ class FullNewsView: UIView {
 
     // MARK: - Private
     private lazy var newsImage: UIImageView = {
-    let imgView = UIImageView()
-    imgView.contentMode = .scaleToFill
-    imgView.clipsToBounds = true
-    imgView.translatesAutoresizingMaskIntoConstraints = false
-    return imgView
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleToFill
+    imageView.clipsToBounds = true
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
     }()
 
     private let closeButton: UIButton = {
@@ -119,6 +119,8 @@ class FullNewsView: UIView {
 
     // MARK: - Delegate method
     @objc func closeFullViewButtonClicked(sender: UIButton) {
+        newsTextLabel.text = ""
+        newsImage.image = nil
         delegate?.closeFullViewButtonClicked(sender: sender)
     }
 

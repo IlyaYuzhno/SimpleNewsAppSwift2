@@ -22,7 +22,7 @@
 		5BDA424326D76503009523A1 /* FullNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA423826D76503009523A1 /* FullNewsView.swift */; };
 		5BDA424426D76503009523A1 /* MainTableViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA423B26D76503009523A1 /* MainTableViewViewModel.swift */; };
 		5BDA424526D76503009523A1 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA423C26D76503009523A1 /* MainTableViewController.swift */; };
-		5BDA424626D76503009523A1 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA423E26D76503009523A1 /* Interactor.swift */; };
+		5BDA424626D76503009523A1 /* NewsFetchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA423E26D76503009523A1 /* NewsFetchingService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		5BDA423826D76503009523A1 /* FullNewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullNewsView.swift; sourceTree = "<group>"; };
 		5BDA423B26D76503009523A1 /* MainTableViewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewViewModel.swift; sourceTree = "<group>"; };
 		5BDA423C26D76503009523A1 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		5BDA423E26D76503009523A1 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		5BDA423E26D76503009523A1 /* NewsFetchingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFetchingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +176,7 @@
 				5BDA423426D76503009523A1 /* Model */,
 				5BDA423626D76503009523A1 /* View */,
 				5BDA423926D76503009523A1 /* ViewController */,
-				5BDA423D26D76503009523A1 /* Interactor */,
+				5BDA423D26D76503009523A1 /* NewsFetchingService */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -224,12 +224,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		5BDA423D26D76503009523A1 /* Interactor */ = {
+		5BDA423D26D76503009523A1 /* NewsFetchingService */ = {
 			isa = PBXGroup;
 			children = (
-				5BDA423E26D76503009523A1 /* Interactor.swift */,
+				5BDA423E26D76503009523A1 /* NewsFetchingService.swift */,
 			);
-			path = Interactor;
+			path = NewsFetchingService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,7 +368,7 @@
 				5BDA424126D76503009523A1 /* News.swift in Sources */,
 				5BDA422D26D764CE009523A1 /* UIColor+Helpers.swift in Sources */,
 				5BDA41FA26D763FA009523A1 /* AppDelegate.swift in Sources */,
-				5BDA424626D76503009523A1 /* Interactor.swift in Sources */,
+				5BDA424626D76503009523A1 /* NewsFetchingService.swift in Sources */,
 				5BDA424226D76503009523A1 /* FullNewsViewViewModel.swift in Sources */,
 				5BDA422C26D764CE009523A1 /* UIView+Helpers.swift in Sources */,
 				5BDA423F26D76503009523A1 /* NewsTableViewCellViewModel.swift in Sources */,

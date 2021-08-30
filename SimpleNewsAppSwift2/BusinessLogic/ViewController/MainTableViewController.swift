@@ -7,25 +7,33 @@
 
 import UIKit
 
+extension CGFloat {
+    static let kFullNewsViewTopOffset: CGFloat = -2
+    static let kFullNewsViewHeightOffset: CGFloat = 0.75
+    static let kRowHeight: CGFloat = 100
+    static let kCellTextLabelOffset: CGFloat = 10
+}
+
 class MainTableViewController: UITableViewController, CloseFullViewDelegate {
 
-    let fullNewsView = FullNewsView(frame: CGRect(x: 0, y: -10, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 1.5))
+    var fullNewsView: FullNewsView?
     var viewModel: MainTableViewViewModelType?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let interactor = Interactor()
+        let interactor = NewsFetchingService()
         viewModel = MainTableViewViewModel(interactor: interactor)
+        fullNewsView = FullNewsView()
 
         self.tableView.separatorColor = UIColor.clear
         self.clearsSelectionOnViewWillAppear = true
         self.tableView.separatorStyle = .none
-        self.tableView.rowHeight = 100
+        self.tableView.rowHeight = .kRowHeight
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: "newsCell")
         
-        fullNewsView.delegate = self
-        
+        fullNewsView?.delegate = self
+
         //Get news via viewModel
         viewModel?.loadData(completion: { [weak self] in
             DispatchQueue.main.async {
@@ -39,7 +47,6 @@ class MainTableViewController: UITableViewController, CloseFullViewDelegate {
         return viewModel?.numberOfRowsInSection(forSection: section) ?? 0
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as? NewsTableViewCell
@@ -54,30 +61,31 @@ class MainTableViewController: UITableViewController, CloseFullViewDelegate {
     
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel, let fullNewsView = fullNewsView else { return }
 
-        guard let viewModel = viewModel else { return }
         viewModel.selectRow(atIndexPath: indexPath)
         fullNewsView.viewModel = viewModel.viewModelForSelectedRow()
 
         fullNewsView.newsTextLabel.text = fullNewsView.viewModel?.news
         fullNewsView.showImage(from: fullNewsView.viewModel?.urlToImage ?? "")
 
-        self.view.addSubview(fullNewsView)
-    }
-
-
-    // MARK: - Show Full View always on top when scrolled method
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var newFrame = fullNewsView.frame
-        newFrame.origin.x = 0
-        newFrame.origin.y = self.tableView.contentOffset.y
-        fullNewsView.frame = newFrame
+        setupFullViewConstraints()
     }
 
     // MARK: - Full News View Delegate method
     func closeFullViewButtonClicked(sender: UIButton) {
-        
-        fullNewsView.removeFromSuperview()
+        fullNewsView?.removeFromSuperview()
     }
+
+    func setupFullViewConstraints(){
+        guard let fullNewsView = fullNewsView else { return }
+
+        view.addSubview(fullNewsView)
+        fullNewsView.translatesAutoresizingMaskIntoConstraints = false
+
+        fullNewsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: .kFullNewsViewTopOffset).isActive = true
+        fullNewsView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        fullNewsView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: .kFullNewsViewHeightOffset).isActive = true
+   }
     
 }

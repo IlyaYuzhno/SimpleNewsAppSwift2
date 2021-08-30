@@ -10,7 +10,7 @@ import UIKit
 
 protocol MainTableViewViewModelType {
     var items: [Response.News] { get set }
-    var interactor: Interactor? { get set  }
+    var interactor: NewsFetchingService? { get set  }
     func numberOfRowsInSection(forSection section: Int) -> Int
     func selectRow(atIndexPath indexPath: IndexPath)
     func cellViewModel(forIndexPath indexPath: IndexPath) -> NewsCellViewModelType?
@@ -22,10 +22,10 @@ protocol MainTableViewViewModelType {
 class MainTableViewViewModel: MainTableViewViewModelType {
 
     var items: [Response.News] = []
-    var interactor: Interactor?
+    var interactor: NewsFetchingService?
     private var selectedIndexPath: IndexPath?
 
-    init(interactor: Interactor?) {
+    init(interactor: NewsFetchingService?) {
         self.interactor = interactor
     }
 

@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol Interactable: AnyObject {
+protocol Fetchable: AnyObject {
     func getLentaFromApi(completion: @escaping ([Response.News]) -> Void)
 }
 
-class Interactor: Interactable {
+class NewsFetchingService: Fetchable {
     
     // MARK: - Public
     var errorMessage = ""
